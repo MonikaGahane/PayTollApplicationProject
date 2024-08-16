@@ -1,5 +1,6 @@
 package com.app.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,13 +11,14 @@ import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 @Entity
-@Table(name="tollbooth")
+@Table(name="tollbooths")
 @Data
 public class TollBooth {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long booth_ID;
+	@Column(name="boothID")
+	private Long boothID;
 	
 	@NotNull
-	private String lane_No;
+	private String boothName;
 }

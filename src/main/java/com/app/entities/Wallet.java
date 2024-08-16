@@ -11,8 +11,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.internal.util.stereotypes.Lazy;
-
 import lombok.Data;
 
 
@@ -22,13 +20,14 @@ import lombok.Data;
 public class Wallet {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long wallet_ID;
+	@Column(name="walletID")
+	private Long walletID;
 	
 	@NotNull
-	private double balance_amount;
+	private double balanceAmount;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_ID")
+	@JoinColumn(name = "userID")
 	private User userID;
 
 	

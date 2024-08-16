@@ -7,10 +7,10 @@ public class UserDto {
 
 	private Long userID;
 	
-	private String user_name;
+	private String userName;
 	
 	private String email;
 	
-	private String phone_No;
+	private String phoneNo;
 	
 }

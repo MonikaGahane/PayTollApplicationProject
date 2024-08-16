@@ -14,7 +14,7 @@ import com.app.entities.Wallet;
 import com.app.repository.WalletRepository;
 
 @Service
-public class WalletServeiceImpl implements WalletService {
+public class WalletServiceImpl implements WalletService {
 
 //	@Autowired
 //	private ObjectMapper objectMapper;
@@ -28,13 +28,13 @@ public class WalletServeiceImpl implements WalletService {
 		user.setUserID(user_Id);
 		Wallet wallet = new Wallet();
 		wallet.setUserID(user);
-		wallet.setBalance_amount(0);
+		wallet.setBalanceAmount(0);
 		Wallet savedWallet = walletRepository.save(wallet);
 		return convertToWalletDto(savedWallet);
 	}
 
 	@Override
-	public WalletDto retriveWalletBalance(Long user_Id) {
+	public WalletDto retrieveWalletBalance(Long user_Id) {
 		Wallet wallet = retriveWalletByUserId(user_Id);
 		return convertToWalletDto(wallet);
 	}
@@ -51,8 +51,8 @@ public class WalletServeiceImpl implements WalletService {
 
 	private WalletDto convertToWalletDto(Wallet wallet) {
 		WalletDto walletDto = new WalletDto();
-		walletDto.setWallet_ID(wallet.getWallet_ID());
-		walletDto.setBalance_amount(wallet.getBalance_amount());
+		walletDto.setWalletID(wallet.getWalletID());
+		walletDto.setBalanceAmount(wallet.getBalanceAmount());
 		return walletDto;
 	}
 
@@ -60,7 +60,7 @@ public class WalletServeiceImpl implements WalletService {
 	@Transactional
 	public WalletDto updateWalletBalance(Long user_Id, double amount) {
 		Wallet wallet = retriveWalletByUserId(user_Id);
-		wallet.setBalance_amount(wallet.getBalance_amount() + amount);
+		wallet.setBalanceAmount(wallet.getBalanceAmount() + amount);
 		Wallet savedWallet = walletRepository.save(wallet);
 		return convertToWalletDto(savedWallet);
 	}

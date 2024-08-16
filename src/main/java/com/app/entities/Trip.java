@@ -2,7 +2,10 @@ package com.app.entities;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,20 +22,26 @@ import lombok.Data;
 public class Trip {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long trip_ID;
+	@Column(name="tripID")
+	private Long tripID;
 	
 	@NotNull
-	private LocalDateTime trip_date;
+	private LocalDateTime tripDate;
 	
 	@ManyToOne
-    @JoinColumn(name = "booth_ID")
-	private TollBooth booth_ID;
+    @JoinColumn(name = "boothID")
+	private TollBooth boothID;
 	
-	@ManyToOne
-    @JoinColumn(name = "vehicle_No")
-	private Vehicle vehicle_No;
+	@NotNull
+	private String vehicleNo;
 	
-	@ManyToOne
-    @JoinColumn(name = "fare_ID")
-	private Fare fare_ID;
+	@NotNull
+	private double fareAmount;
+	
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private PayMode payMode;
+	
+	
+
 }
