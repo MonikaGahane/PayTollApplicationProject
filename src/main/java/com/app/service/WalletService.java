@@ -9,5 +9,6 @@ public interface WalletService {
 	WalletDto retrieveWalletBalance(Long user_Id);
 
 	WalletDto updateWalletBalance(Long user_Id, double amount);
-
+	
+	WalletDto rechargeWallet(Long user_Id, double amount);
 }

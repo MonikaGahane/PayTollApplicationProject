@@ -58,7 +58,17 @@ public class WalletServiceImpl implements WalletService {
 
 	@Override
 	@Transactional
-	public WalletDto updateWalletBalance(Long user_Id, double amount) {
+	public WalletDto updateWalletBalance(Long walletId, double amount) {
+		Optional<Wallet> optWallet = walletRepository.findById(walletId);
+		Wallet wallet = optWallet.get();
+		wallet.setBalanceAmount(amount);
+		Wallet savedWallet = walletRepository.save(wallet);
+		return convertToWalletDto(savedWallet);
+	}
+	
+	@Override
+	@Transactional
+	public WalletDto rechargeWallet(Long user_Id, double amount) {
 		Wallet wallet = retriveWalletByUserId(user_Id);
 		wallet.setBalanceAmount(wallet.getBalanceAmount() + amount);
 		Wallet savedWallet = walletRepository.save(wallet);

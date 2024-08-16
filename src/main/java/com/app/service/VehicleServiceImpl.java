@@ -26,13 +26,20 @@ public class VehicleServiceImpl implements VehicleService {
 		return convertToVehicleDto(savedVehicle, vehicleDto.getVehicleType());
 	}
 	
-	private void validateVehicle(String vehicleNumber) {
+	@Override
+	public Optional<Vehicle> getVehicle(String vehicleNumber) {
 		Optional<Vehicle> optVehicle = vehicleRepository.findByVehicleNumber(vehicleNumber);
+		return optVehicle;
+	}
+	
+	
+	private void validateVehicle(String vehicleNumber) {
+		Optional<Vehicle> optVehicle = getVehicle(vehicleNumber);
 		if(optVehicle.isPresent()) {
 			throw new BadRequestException(vehicleNumber + " is already registered");
 		}
 	}
-	
+
 	private Vehicle convertToVehicleEntity(VehicleDto vehicleDto) {
 		User user = new User();
 		user.setUserID(vehicleDto.getUserID());
@@ -40,13 +47,6 @@ public class VehicleServiceImpl implements VehicleService {
 		Vehicle vehicle = new Vehicle();
 		vehicle.setUserID(user);
 		vehicle.setVehicleNumber(vehicleDto.getVehicleNumber());
-		
-		/*
-		 * VehicleType vehicleType = new VehicleType();
-		 * vehicleType.setVehicleType(TypeVehicle.valueOf(vehicleDto.getVehicleType().
-		 * toUpperCase()));
-		 */
-		
 		vehicle.setVehicleType(TypeVehicle.valueOf(vehicleDto.getVehicleType().toUpperCase()));
 		
 		return vehicle;
@@ -55,5 +55,9 @@ public class VehicleServiceImpl implements VehicleService {
 	private VehicleDto convertToVehicleDto(Vehicle vehicle, String vehicleType) {
 		return new VehicleDto(vehicle.getVehicleID(), vehicle.getVehicleNumber(), vehicle.getUserID().getUserID(),  vehicleType);
 	}
+
+
+
+	
 	
 }
