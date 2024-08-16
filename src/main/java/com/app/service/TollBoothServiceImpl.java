@@ -2,6 +2,7 @@ package com.app.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,6 @@ import com.app.entities.TollBoothFare;
 import com.app.entities.TypeVehicle;
 import com.app.repository.TollBoothFareRepository;
 import com.app.repository.TollBoothRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class TollBoothServiceImpl implements TollBoothService {
@@ -25,9 +25,6 @@ public class TollBoothServiceImpl implements TollBoothService {
 	@Autowired
 	private TollBoothFareRepository tollBoothFareRepository;
 	
-	@Autowired
-	private ObjectMapper objectMapper;
-
 	@Override
 	public TollBoothDto addTollBooth(TollBoothDto tollBoothDto) {
 		TollBooth tollBooth = new TollBooth();
@@ -47,14 +44,12 @@ public class TollBoothServiceImpl implements TollBoothService {
 			tollBoothFare.setVehicleType(TypeVehicle.valueOf(fare.getVehicleType()));
 			entitiesList.add(tollBoothFareRepository.save(tollBoothFare));
 		}
-		BoothFareDto returnDto = new BoothFareDto();
-		returnDto.setBoothID(boothFareDto.getBoothID());
-		returnDto.setFares(convertToFares(entitiesList));
-		
-		return returnDto;
+		return convertToDto(boothFareDto.getBoothID(), entitiesList);
 	}
 	
-	private List<Fare> convertToFares(List<TollBoothFare> entitiesList) {
+	private BoothFareDto convertToDto(Long boothId, List<TollBoothFare> entitiesList) {
+		BoothFareDto returnDto = new BoothFareDto();
+		returnDto.setBoothID(boothId);
 		List<Fare> faresDtoList = new ArrayList<>();
 		entitiesList.forEach(entity -> {
 			Fare fare = new Fare();
@@ -63,9 +58,16 @@ public class TollBoothServiceImpl implements TollBoothService {
 			fare.setVehicleType(entity.getVehicleType().name());
 			faresDtoList.add(fare);
 		});
+		returnDto.setFares(faresDtoList);
+		return returnDto;
 		
-		return faresDtoList;
-		
+	}
+
+	@Override
+	public Double getBoothFareForVehicleType(Long boothId, String vehicleType) {
+		List<TollBoothFare> tollBoothFares = tollBoothFareRepository.findByBoothID(boothId);
+		Optional<TollBoothFare> boothFare = tollBoothFares.stream().filter(booth -> booth.getVehicleType()== TypeVehicle.valueOf(vehicleType)).findFirst();
+		return boothFare.get().getFare();
 	}
 	
 

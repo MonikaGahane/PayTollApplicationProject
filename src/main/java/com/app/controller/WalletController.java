@@ -24,8 +24,8 @@ public class WalletController {
 	}
 	
 	// API to update the wallet balance
-	@PutMapping("/update/{user_Id}")
-	public WalletDto updateWalletBalance(@PathVariable Long user_Id, @RequestParam(name = "balance_amount") double amount) {
-		return walletService.updateWalletBalance(user_Id, amount);
+	@PutMapping("/recharge/{user_Id}")
+	public WalletDto rechargeWallet(@PathVariable Long user_Id, @RequestParam(name = "balance_amount") double amount) {
+		return walletService.rechargeWallet(user_Id, amount);
 	}
 }

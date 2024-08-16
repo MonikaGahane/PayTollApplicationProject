@@ -9,4 +9,6 @@ public interface TollBoothService {
 
 	BoothFareDto addBoothFares(BoothFareDto boothFareDto);
 	
+	Double getBoothFareForVehicleType(Long boothId, String vehicleType);
+	
 }
