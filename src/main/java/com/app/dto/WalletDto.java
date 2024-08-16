@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class WalletDto {
 	
-	private Long wallet_ID;
+	private Long walletID;
 
-	private double balance_amount;
+	private double balanceAmount;
 }

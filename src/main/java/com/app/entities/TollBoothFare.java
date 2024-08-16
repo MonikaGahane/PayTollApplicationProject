@@ -1,8 +1,9 @@
 package com.app.entities;
 
-import java.time.LocalDateTime;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,31 +15,22 @@ import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 @Entity
-@Table(name="fares")
+@Table(name="tollbooth_fares")
 @Data
-public class Fare {
+public class TollBoothFare {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long fare_ID;
+	@Column
+	private Long boothFareID;
 	
-	@ManyToOne
-    @JoinColumn(name = "vehicle_type")
-	private VehicleType vehicle_type;
+	@Column(name="boothID")
+	private Long boothID;
 	
-	@ManyToOne
-    @JoinColumn(name = "vehicle_No")
-	private Vehicle vehicle_No;
-	
-	@ManyToOne
-    @JoinColumn(name = "booth_ID")
-	private TollBooth booth_ID;
+	@Enumerated(EnumType.STRING)
+	@Column(name="vehicle_type", length = 40)
+	private TypeVehicle vehicleType;
 	
 	@NotNull
-	private double totalFareAmount;
-	
-	@NotNull
-	private LocalDateTime paid_date;
-	
-	
-	
+	private double fare;
 }

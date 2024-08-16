@@ -2,11 +2,11 @@ package com.app.service;
 
 import com.app.dto.UserDto;
 
-public interface UserRegistrationService {
+public interface UserService {
 	
-	UserDto addUser(UserDto user);
+	UserDto addUser(UserDto userDto);
 	
-	UserDto retriveUser(Long user_ID);
+	UserDto retrieveUser(Long user_ID);
 	
 //	WalletDto updateWalletBalance(Long user_Id, double amount);
 	

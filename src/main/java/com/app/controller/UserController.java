@@ -9,31 +9,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.UserDto;
-import com.app.service.UserRegistrationService;
+import com.app.service.UserService;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
 	@Autowired
-	private UserRegistrationService userRegistrationService;
+	private UserService userService;
 	
+	//API for adding new user
 	@PostMapping("/add")
 	public UserDto addUser(@RequestBody UserDto userDto) {
-//		userRegistrationService.addUser(userDto);
-//		walletService.createZeroBalanceWallet(userDto.getUser_ID());
-//		return userDto;
-		return userRegistrationService.addUser(userDto);
+		return userService.addUser(userDto);
 	}
 	
-	@GetMapping("/retrive/{user_id}")
-	public UserDto retrive(@PathVariable Long user_id) {
-		return userRegistrationService.retriveUser(user_id);
+	//API for retrieve user
+	@GetMapping("/retrieve/{user_id}")
+	public UserDto retrieveUser(@PathVariable Long user_id) {
+		return userService.retrieveUser(user_id);
 	}
 	
 	
-//	@PostMapping("/wallet/update")
-//	public WalletDto updateWalletBalance(@RequestBody Long user_Id, double amount) {
-//		return userRegistrationService.updateWalletBalance(user_Id, amount);
-//	}
 }

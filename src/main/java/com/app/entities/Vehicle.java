@@ -1,6 +1,9 @@
 package com.app.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,13 +20,18 @@ import lombok.Data;
 public class Vehicle {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long vehicle_No;
+	@Column(name="vehicleID")
+	private Long vehicleID;
+	
+	@NotNull
+	@Column(name="vehicleNo")
+	private String vehicleNumber;
 	
 	@ManyToOne
-	@JoinColumn(name = "user_ID")
-	private User user_ID;
-	
-	@ManyToOne
-	@JoinColumn(name = "vehicle_type")
-	private VehicleType vehicle_type;
+	@JoinColumn(name = "userID")
+	private User userID;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name="vehicle_type", length = 40)
+	private TypeVehicle vehicleType;
 }

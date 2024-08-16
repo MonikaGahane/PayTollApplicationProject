@@ -12,7 +12,7 @@ import com.app.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
-public class UserRegistrationServiceImpl implements UserRegistrationService {
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private ObjectMapper objectMapper;
@@ -23,16 +23,18 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 	@Autowired 
 	private WalletService walletService;
 	
+	
+	
 	@Override
 	public UserDto addUser(UserDto userDto) {
 		User user = objectMapper.convertValue(userDto, User.class);
-		User savedUser = userRepository.save(user);
-		walletService.createZeroBalanceWallet(savedUser.getUserID());
+		User savedUser = userRepository.save(user); 
+		walletService.createZeroBalanceWallet(savedUser.getUserID());  // if new user added then at that moment wallet also created... so for that purpose we are calling createZeroBalanceWallet() method.
 		return objectMapper.convertValue(savedUser, UserDto.class);
 	}
 
 	@Override
-	public UserDto retriveUser(Long user_ID) {
+	public UserDto retrieveUser(Long user_ID) {
 		Optional<User> optUser = userRepository.findById(user_ID);
 		if (optUser.isEmpty()) { 
 			throw new ResourceNotFoundException("User not available for UserId:"+ user_ID);
@@ -42,12 +44,7 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 		return userDto;
 	}
 
-//	@Override
-//	public WalletDto updateWalletBalance(Long user_Id, double amount) {
-//		WalletService walletService = new WalletServeiceImpl();
-//		WalletDto walletDto = walletService.updateWalletBalance(user_Id, amount);
-//		return walletDto;
-//	}
+
 
 
 }
