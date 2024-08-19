@@ -25,6 +25,7 @@ public class TollBoothServiceImpl implements TollBoothService {
 	@Autowired
 	private TollBoothFareRepository tollBoothFareRepository;
 	
+	
 	@Override
 	public TollBoothDto addTollBooth(TollBoothDto tollBoothDto) {
 		TollBooth tollBooth = new TollBooth();
@@ -68,8 +69,7 @@ public class TollBoothServiceImpl implements TollBoothService {
 		List<TollBoothFare> tollBoothFares = tollBoothFareRepository.findByBoothID(boothId);
 		Optional<TollBoothFare> boothFare = tollBoothFares.stream().filter(booth -> booth.getVehicleType()== TypeVehicle.valueOf(vehicleType)).findFirst();
 		return boothFare.get().getFare();
-	}
-	
+	}	
 
 
 }

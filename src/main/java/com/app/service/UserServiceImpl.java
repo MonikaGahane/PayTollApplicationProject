@@ -44,7 +44,16 @@ public class UserServiceImpl implements UserService {
 		return userDto;
 	}
 
-
+	@Override
+	public UserDto retrieveUserByEmail(String email) {
+		Optional<User> optUser = userRepository.findByEmail(email);
+		if (optUser.isEmpty()) { 
+			throw new ResourceNotFoundException("User not available for :"+ email);
+		}
+		User user = optUser.get();
+		UserDto userDto = objectMapper.convertValue(user, UserDto.class);
+		return userDto;
+	}
 
 
 }

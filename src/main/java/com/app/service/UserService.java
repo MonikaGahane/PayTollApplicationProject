@@ -8,6 +8,8 @@ public interface UserService {
 	
 	UserDto retrieveUser(Long user_ID);
 	
+	UserDto retrieveUserByEmail(String email);
+	
 //	WalletDto updateWalletBalance(Long user_Id, double amount);
 	
 }
