@@ -48,7 +48,7 @@ public class TripServiceImpl implements TripService {
 		LocalDateTime startDate = LocalDate.parse(fromDate, dateTimeFormatter).atStartOfDay();
 		LocalDateTime endDate = LocalDate.parse(toDate, dateTimeFormatter).atStartOfDay().plusHours(23).plusMinutes(59)
 				.plusSeconds(59);
-		if (vehicleNumber.isPresent()) {
+		if (vehicleNumber.isPresent() && vehicleNumber.get().trim()!="") {
 			trips = tripRepository.findAllByVehicleNoAndTripDateBetweenOrderByTripDateDesc(vehicleNumber.get(),
 					startDate, endDate);
 		} else {
