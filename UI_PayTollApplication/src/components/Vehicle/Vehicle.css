@@ -1,0 +1,51 @@
+.vehicle-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 70px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-left: 50px;
+  }
+
+  .search-form {
+    
+    margin: 1px auto;
+    padding: 70px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-left: 50px;
+  }
+
+  .vehicle-label {
+    width: 5px;
+    color: black;
+    font-weight: bold;
+  }
+  
+    
+    .vehicle-h2 {
+        color: black;
+        font-weight: bold;
+      }
+
+    
+  input[name="vehicle"],
+  input[name="userId"],
+  input[name="vehicleType"]
+  {
+    width: 20%;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+    border-color: black;
+  }
+  button {
+    width: 20%;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+  }
+
+ 

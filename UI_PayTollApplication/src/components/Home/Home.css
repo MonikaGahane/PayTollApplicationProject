@@ -1,0 +1,18 @@
+.tab-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    margin: 0;
+    background: #f1f1f1;
+    padding: 10px;
+  }
+  
+  .tab-list li {
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+  }
+  
+  .tab-list li.active {
+    background-color: #ccc;
+  }

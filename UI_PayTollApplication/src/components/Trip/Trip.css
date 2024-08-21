@@ -1,0 +1,105 @@
+.trip-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 70px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-left: 50px;
+  }
+
+  .search-form {
+    
+    margin: 1px auto;
+    padding: 70px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-left: 50px;
+  }
+
+  .trip-label {
+    width: 5px;
+    color: black;
+    font-weight: bold;
+  }
+  .search-label {
+    padding: 20px;
+    width: 5px;
+    color: white;
+    font-weight: bold;
+  }
+    
+    .trip-h2 {
+        color: black;
+        font-weight: bold;
+      }
+
+      .searchTrip-h2 {
+        color: greenyellow;
+        font-weight: bold;
+      }
+  
+
+
+  input[name="vehicleNumb"],
+  select[name="payMode"],
+  input[name="boothID"]
+  {
+    width: 30%;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+    border-color: black;
+  }
+  button {
+    width: 30%;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+  }
+
+  input[name="searchVehicleNumber"],
+  input[name="fromDate"],
+  input[name="toDate"]
+  {
+    width: 10%;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+    border-color: black;
+  }
+
+  button[name="searchButton"]{
+    width: 10%;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+  }
+
+
+  .user-table {
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+    
+    border-collapse: collapse;
+  }
+  
+  .user-table th{
+    border: 1px solid white;
+    padding: 8px;
+    text-align: left;
+    color: black;
+  }
+  .user-table td {
+    border: 1px solid white;
+    padding: 8px;
+    text-align: left;
+    background-color: darkslategray;
+    color: white;
+  }
+  
+  .user-table th {
+    background-color: #f4f4f4;
+  }

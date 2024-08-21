@@ -1,0 +1,45 @@
+
+
+  .collection-form {
+    
+    margin: 1px auto;
+    padding: 70px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-left: 50px;
+  }
+
+  
+  .collection-label {
+    padding: 20px;
+    width: 5px;
+    color: white;
+    font-weight: bold;
+  }
+   
+      .collection-h2 {
+        color: greenyellow;
+        font-weight: bold;
+      }
+
+
+input[name="fromDate"],
+  input[name="toDate"]
+  {
+    width: 10%;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+    border-color: black;
+  }
+
+  button[name="collection"]{
+    width: 10%;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+  }
+
+
+ 
